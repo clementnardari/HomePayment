@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home Loan Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <h1>Home Loan Calculator</h1>
+    <form method="post">
+      <label for="principal">Principal:</label>
+      <input type="number" step="any" name="principal" required><br>
+      <label for="down_payment">Down Payment:</label>
+      <input type="number" step="any" name="down_payment" required><br>
+      <label for="annual_interest_rate">Annual Interest Rate (%):</label>
+      <input type="number" step="any" name="annual_interest_rate" required><br>
+      <label for="loan_term">Loan Term (years):</label>
+      <input type="number" step="1" name="loan_term" required><br>
+      <label for="annual_property_tax">Annual Property Tax:</label>
+      <input type="number" step="any" name="annual_property_tax" required><br>
+      <label for="annual_home_insurance">Annual Home Insurance:</label>
+      <input type="number" step="any" name="annual_home_insurance" required><br>
+      <label for="annual_hoa_fees">Annual HOA Fees:</label>
+      <input type="number" step="any" name="annual_hoa_fees" required><br>
+      <button type="submit">Calculate</button>
+    </form>
+    {% if total_monthly_payment %}
+      <p>Total monthly payment: ${{ total_monthly_payment | round(2) }}</p>
+      <img src="{{ url_for('static', filename=plot1_path.split('/')[-1]) }}" alt="Plot 1">
+      <img src="{{ url_for('static', filename=plot2_path.split('/')[-1]) }}" alt="Plot 2">
+    {% endif %}
+  </body>
+</html>
